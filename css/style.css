@@ -342,24 +342,34 @@ footer a{
 
 /* topへ戻るボタン */
 .top-btn {
+
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background: #121212;
-    position: fixed;
     right: 25px;
     bottom: 25px;
     border: 1px solid white;
+    position: fixed;
 }
 
 .top-btn::after {
+    /* position */
+    /* position: relative;s */
+    position: absolute;
+
+    /* 形 */
     content: "";
     border-bottom: solid 7px white;
     border-right: solid 7px transparent;
     border-left: solid 7px transparent;
-    left: 17px;
-    bottom: 3px;
-    position: relative;
+
+    /* 配置場所 */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    /* オプション */
 }
 
 @media(max-width: 960px) {
@@ -424,7 +434,7 @@ footer a{
         cursor: pointer;
         position: fixed;
         top: 22px;
-        right: 18px;
+        right: 25px;
         transition: 0.5s;
         z-index: 20;
     }
@@ -437,15 +447,67 @@ footer a{
         display: block;
         position: absolute;
         left: 0;
-        translate: 0.5s;
+        transition: all 0.5s;
     }
     .hunberger span:nth-child(1) {
         top: 4px;
     }
-        .hunberger span:nth-child(2) {
+    .hunberger span:nth-child(2) {
         top: 14px;
     }
-        .hunberger span:nth-child(3) {
+    .hunberger span:nth-child(3) {
         bottom: 4px;
+    }
+    /* ハンバーガーボタンクリック後 */
+    .open .hunberger span{
+        transition: all 0.5s;
+        background-color: white;
+    }
+    .open .hunberger span:nth-child(1) {
+        transform: rotate(-45deg);
+        top: 50%;
+    }
+
+    /*2本目の線を45度回転*/
+    .open .hunberger span:nth-child(2){
+        transform: rotate(45deg);  
+    }
+
+    /* 3本目 */
+    .open .hunberger span:nth-child(3) {
+        transform: rotate(45deg) ;
+        top: 50%;
+    }
+
+    .open #mask {
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        opacity: 0.8;
+        cursor: pointer;
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    .move-list {
+        width: 300px;
+        background-color: white;
+        padding: 25px;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        opacity: 0;
+        left: -300px;
+        overflow-y: auto;
+        transition: 0.5s;
+        z-index: 20;
+    }
+
+    .open .move-list {
+        left: 0px;
+        opacity: 1;
     }
 }
